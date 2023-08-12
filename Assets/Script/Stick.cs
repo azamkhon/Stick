@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using Assets.Script;
+using UnityEngine.SceneManagement;
+
 
 
 public class Stick : MonoBehaviour
@@ -65,6 +66,10 @@ public class Stick : MonoBehaviour
     // Update is called once per frame
 
     public void resetGame() {
+        SceneManager.LoadScene(0);
+    }
+
+    public void resetStick() {
         checkMoveHits = false;
         isStand = false;
         CancelInvoke("chec");
