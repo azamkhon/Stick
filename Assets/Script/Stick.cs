@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Script;
+//using Assets.Script;
 
 
 public class Stick : MonoBehaviour
@@ -52,9 +52,7 @@ public class Stick : MonoBehaviour
         }
        
         firsteFrameStandUp();
-       
-     //   animBoneTrans(_standBoneTrans);
-       // disRagDoll();
+
     }
 
     class boneInfo
@@ -81,16 +79,11 @@ public class Stick : MonoBehaviour
             rb.isKinematic = false;
         }
 
-        
 
         transform.position = stickPos;
          transform.rotation = stickRot;
         _animator.enabled = true;
         _characContr.enabled = true;
-
-
-
-        
 
         foreach (var rb in _ragdollRb)
         {
@@ -101,10 +94,7 @@ public class Stick : MonoBehaviour
     bool isStand ;
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0)) {
-        //    enblRagDoll();
-        //}
-       // print(Hips.GetComponent<Rigidbody>().velocity.magnitude);
+
 
         if (checkMoveHits) {
             if (Hips.GetComponent<Rigidbody>().velocity.magnitude < 0.05f) {
@@ -166,17 +156,14 @@ public class Stick : MonoBehaviour
         if (elapsedPercentage >= 1) {
             isStand = false;
             _time = 0;
-            print("DAAAAAAA");
+            
             disRagDoll();
         }
 
     }
 
     void disRagDoll() {
-       
-       
 
-        //resetPos();
         if (isFaceUp)
         {
             _animator.Rebind();
@@ -206,7 +193,7 @@ public class Stick : MonoBehaviour
 
         _animator.enabled = false;
         _characContr.enabled = false;
-       // isStand = true;
+
         CancelInvoke("chec");
         Invoke("chec", 2);
     }
@@ -214,7 +201,6 @@ public class Stick : MonoBehaviour
 
     void chec() {
         checkMoveHits = true;
-    
     }
 
     void trueReset() {
@@ -240,20 +226,8 @@ public class Stick : MonoBehaviour
 
         transform.position = Hips.position;
         transform.rotation = Hips.rotation;
-     //   transform.rotation = new Quaternion(0, Hips.rotation.y, 0, 1);
         transform.rotation = Quaternion.Euler(0, Hips.rotation.eulerAngles.y+180, 0);
 
-        //if (isFaceUp)
-        //{
-        //    transform.rotation = new Quaternion(0, Hips.rotation.y, 0, 1);
-        //}
-        //else {
-        //    transform.rotation = new Quaternion(0, -Hips.rotation.y, 0, 0);
-        
-        //}
-
-        
-   
         Hips.position = oldPos;
         Hips.rotation = oldRot;
 
